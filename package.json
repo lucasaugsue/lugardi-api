@@ -10,10 +10,11 @@
   "author": "Lucas Augsuê",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.18.2",
-    "dotenv": "^16.0.3",
+    "@supabase/supabase-js": "^2.47.10",
     "body-parser": "^1.20.2",
-    "cors": "^2.8.5"
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.22"
