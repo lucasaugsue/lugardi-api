@@ -59,38 +59,51 @@
   <div class="container">
     <!-- Grupo de Rotas -->
     <div class="route-group">
-      <h2>Assinaturas</h2>
+      <h2>Postagens</h2>
       <div class="route">
         <span class="method" style="color: #00FF00;">GET</span>
-        <span class="description">/api/1/payment - Listagem dos pagamentos das assinaturas do EAD.</span>
+        <span class="description">/postagem - Listar todas as postagens.</span>
       </div>
       <div class="route">
         <span class="method" style="color: #00FF00;">GET</span>
-        <span class="description">/api/1/signature - Listagem de assinaturas do EAD.</span>
+        <span class="description">/postagem/:post_name - Buscar uma postagem por nome.</span>
       </div>
       <div class="route">
-        <span class="method" style="color: #FFD700;">PUT</span>
-        <span class="description">/api/1/signature/{id} - Atualizar uma assinatura do EAD.</span>
-      </div>
-    </div>
-    <!-- Outro Grupo de Rotas -->
-    <div class="route-group">
-      <h2>Banco de Questões</h2>
-      <div class="route">
-        <span class="method" style="color: #00FF00;">GET</span>
-        <span class="description">/api/1/questions - Listagem das questões cadastradas por curso.</span>
+        <span class="method" style="color: #FFD700;">POST</span>
+        <span class="description">/postagem - Criar uma nova postagem.</span>
       </div>
       <div class="route">
-        <span class="method" style="color: #00FF00;">POST</span>
-        <span class="description">/api/1/questions - Inserir uma questão para um curso.</span>
-      </div>
-      <div class="route">
-        <span class="method" style="color: #FFD700;">PUT</span>
-        <span class="description">/api/1/questions/{pergunta_id} - Atualizar uma questão de um curso.</span>
+        <span class="method" style="color: #0040ff;">PUT</span>
+        <span class="description">/postagem/:post_name - Editar uma postagem existente.</span>
       </div>
       <div class="route">
         <span class="method" style="color: #FF0000;">DELETE</span>
-        <span class="description">/api/1/questions/{id} - Excluir uma questão de um curso.</span>
+        <span class="description">/postagem/:post_name - Deletar uma postagem.</span>
+      </div>
+    </div>
+    
+    <!-- Outro Grupo de Rotas -->
+    <div class="route-group">
+      <h2>Personagens</h2>
+      <div class="route">
+        <span class="method" style="color: #00FF00;">GET</span>
+        <span class="description">/personagem - Listar todos os personagens.</span>
+      </div>
+      <div class="route">
+        <span class="method" style="color: #00FF00;">GET</span>
+        <span class="description">/personagem/:personagem_tag - Buscar um personagem por tag.</span>
+      </div>
+      <div class="route">
+        <span class="method" style="color: #FFD700;">POST</span>
+        <span class="description">/personagem - Criar um novo personagem.</span>
+      </div>
+      <div class="route">
+        <span class="method" style="color: #0040ff;">PUT</span>
+        <span class="description">/personagem/:personagem_tag - Editar um personagem existente.</span>
+      </div>
+      <div class="route">
+        <span class="method" style="color: #FF0000;">DELETE</span>
+        <span class="description">/personagem/:personagem_tag - Deletar um personagem.</span>
       </div>
     </div>
   </div>
