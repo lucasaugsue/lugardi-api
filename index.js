@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const path = require("path");
 
 const app = express();
 const port = process.env.PORT || 8181;
@@ -16,7 +17,7 @@ app.use("/api/example", exampleRoutes);
 
 // Rota raiz
 app.get("/", (req, res) => {
-  res.send("Bem-vindo à API!");
+  res.sendFile(path.join(__dirname, "index.html"));
 });
 
 // Inicializar o servidor
