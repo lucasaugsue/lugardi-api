@@ -36,19 +36,18 @@ app.delete("/postagem/:uuid", postagensController.deletarPostagem);
 
 // Rotas para os personagens
 app.get("/personagem", personagensController.listarPersonagens);
-app.get("/personagem/:personagem_tag", personagensController.buscarPersonagem);
+app.get("/personagem/:uuid", personagensController.buscarPersonagem);
 app.post("/personagem", personagensController.criarPersonagem);
-app.put("/personagem/:personagem_tag", personagensController.editarPersonagem);
-app.delete("/personagem/:personagem_tag", personagensController.deletarPersonagem);
+app.put("/personagem/:uuid", personagensController.editarPersonagem);
+app.delete("/personagem/:uuid", personagensController.deletarPersonagem);
 
 // Rotas para os usuários
-app.get("/usuario", usuariosController.listarUsuarios); // Lista todos os usuários
-app.get("/usuario/:uuid", usuariosController.buscarUsuarioPorUuid); // Busca um usuário por UUID
-app.post("/usuario", usuariosController.criarUsuario); // Cria um novo usuário
-app.put("/usuario/:uuid", usuariosController.editarUsuario); // Atualiza um usuário por UUID
-app.delete("/usuario/:uuid", usuariosController.deletarUsuario); // Deleta um usuário por UUID
-app.put("/login", usuariosController.loginUsuario); // Login do usuário
-
+app.get("/usuario", usuariosController.listarUsuarios);
+app.get("/usuario/:uuid", usuariosController.buscarUsuarioPorUuid);
+app.post("/usuario", usuariosController.criarUsuario); 
+app.put("/usuario/:uuid", usuariosController.editarUsuario);
+app.delete("/usuario/:uuid", usuariosController.deletarUsuario);
+app.put("/login", usuariosController.loginUsuario); 
 
 // Rota raiz
 app.get("/", (req, res) => {
