@@ -57,7 +57,7 @@
     <p>Veja abaixo as rotas disponíveis.</p>
   </header>
   <div class="container">
-    <!-- Grupo de Rotas -->
+    <!-- Grupo de Rotas - Postagens -->
     <div class="route-group">
       <h2>Postagens</h2>
       <div class="route">
@@ -81,8 +81,8 @@
         <span class="description">/postagem/:post_name - Deletar uma postagem.</span>
       </div>
     </div>
-    
-    <!-- Outro Grupo de Rotas -->
+
+    <!-- Grupo de Rotas - Personagens -->
     <div class="route-group">
       <h2>Personagens</h2>
       <div class="route">
@@ -104,6 +104,31 @@
       <div class="route">
         <span class="method" style="color: #FF0000;">DELETE</span>
         <span class="description">/personagem/:personagem_tag - Deletar um personagem.</span>
+      </div>
+    </div>
+
+    <!-- Grupo de Rotas - Usuários -->
+    <div class="route-group">
+      <h2>Usuários</h2>
+      <div class="route">
+        <span class="method" style="color: #00FF00;">GET</span>
+        <span class="description">/usuario - Listar todos os usuários.</span>
+      </div>
+      <div class="route">
+        <span class="method" style="color: #00FF00;">GET</span>
+        <span class="description">/usuario/:uuid - Buscar um usuário por UUID.</span>
+      </div>
+      <div class="route">
+        <span class="method" style="color: #FFD700;">POST</span>
+        <span class="description">/usuario - Criar um novo usuário.</span>
+      </div>
+      <div class="route">
+        <span class="method" style="color: #0040ff;">PUT</span>
+        <span class="description">/usuario/:uuid - Editar um usuário existente.</span>
+      </div>
+      <div class="route">
+        <span class="method" style="color: #FF0000;">DELETE</span>
+        <span class="description">/usuario/:uuid - Deletar um usuário.</span>
       </div>
     </div>
   </div>
