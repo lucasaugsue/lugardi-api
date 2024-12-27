@@ -1,13 +1,15 @@
-const Usuario = {
+const { v4: uuidv4 } = require("uuid");
+
+const Postagem = {
   schema: {
     id: "integer", // Não será validado no método create
     uuid: "string",
-    first_name: "string",
-    last_name: "string",
-    birthday: "date",
-    email: "string",
-    password: "string",
-    created_at: "timestamp"
+    post_name: "string",
+    image: "string",
+    title: "string",
+    subtitle: "string",
+    text: "string",
+    created_at: "timestamp",
   },
 
   /**
@@ -26,8 +28,8 @@ const Usuario = {
       if (this.schema[key] === "integer" && typeof data[key] !== "number") {
         errors.push(`${key} deve ser um número.`);
       }
-      if (this.schema[key] === "date" && isNaN(new Date(data[key]).getTime())) {
-        errors.push(`${key} deve ser uma data válida.`);
+      if (this.schema[key] === "timestamp" && isNaN(new Date(data[key]).getTime())) {
+        errors.push(`${key} deve ser um timestamp válido.`);
       }
     });
 
@@ -39,15 +41,15 @@ const Usuario = {
    */
   create(data) {
     return {
-      uuid: data.uuid || null,
-      first_name: data.first_name || "",
-      last_name: data.last_name || "",
-      birthday: data.birthday || null,
-      email: data.email || "",
-      password: data.password || "",
-      created_at: new Date()
+      uuid: data.uuid || uuidv4(), // Gera um UUID automaticamente, se não fornecido
+      post_name: data.post_name || "",
+      image: data.image || "",
+      title: data.title || "",
+      subtitle: data.subtitle || "",
+      text: data.text || "",
+      created_at: new Date(), // Adiciona a data de criação automaticamente
     };
   },
 };
 
-module.exports = Usuario;
+module.exports = Postagem;

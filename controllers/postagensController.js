@@ -1,6 +1,6 @@
 const { supabase } = require("../supabase");
+const Postagem = require("../models/Postagem");
 
-// Controlador para postagens
 const postagensController = {
   // Listar todas as postagens
   listarPostagens: async (req, res) => {
@@ -17,15 +17,16 @@ const postagensController = {
     }
   },
 
-  // Buscar uma postagem específica por "post_name"
-  buscarPostagemPorNome: async (req, res) => {
-    const { post_name } = req.params;
+  // Buscar uma postagem específica por "uuid"
+  buscarPostagemPorUuid: async (req, res) => {
+    const { uuid } = req.params;
+    console.log("entrou na rota", uuid)
 
     try {
       const { data, error } = await supabase
         .from("postagem")
         .select("*")
-        .eq("post_name", post_name)
+        .eq("uuid", uuid)
         .single();
 
       if (error) throw error;
@@ -38,53 +39,84 @@ const postagensController = {
 
   // Criar uma nova postagem
   criarPostagem: async (req, res) => {
-    const { id, post_name, image, title, subtitle, text } = req.body;
-    
+    const { post_name, image, title, subtitle, text } = req.body;
+
     try {
-      const { data, error } = await supabase
-        .from("postagem")
-        .insert([
-          { id, post_name, image, title, subtitle, text },
-        ]);
+      // Valida os dados usando a model
+      const validationErrors = Postagem.validate({
+        post_name,
+        image,
+        title,
+        subtitle,
+        text,
+      });
+
+      if (validationErrors) {
+        return res.status(400).json({ errors: validationErrors });
+      }
+
+      // Cria o objeto da postagem usando a model
+      const newPost = Postagem.create({
+        post_name,
+        image,
+        title,
+        subtitle,
+        text,
+      });
+
+      const { data, error } = await supabase.from("postagem").insert(newPost);
 
       if (error) throw error;
 
-      res.status(201).json(data);
+      res.status(201).json({ message: "Postagem criada com sucesso." });
     } catch (error) {
       res.status(400).json({ error: error.message });
     }
   },
 
-  // Editar uma postagem existente por "post_name"
+  // Editar uma postagem existente por "uuid"
   editarPostagem: async (req, res) => {
-    const { post_name } = req.params;
-    const { image, title, subtitle, text } = req.body;
-
-    // console.log("data", { post_name, image, title, subtitle, text })
+    const { uuid } = req.params;
+    const { image, title, subtitle, text, post_name } = req.body;
 
     try {
+      // Valida os dados fornecidos
+      const validationErrors = Postagem.validate({
+        image,
+        title,
+        subtitle,
+        text,
+        post_name
+      });
+
+      if (validationErrors) {
+        return res.status(400).json({ errors: validationErrors });
+      }
+
+      const updateData = { image, title, subtitle, text, post_name };
+
       const { data, error } = await supabase
         .from("postagem")
-        .update({ image, title, subtitle, text })
-        .eq("post_name", post_name);
+        .update(updateData)
+        .eq("uuid", uuid);
 
       if (error) throw error;
 
-      res.status(200).json(data);
+      res.status(200).json({ message: "Postagem editada com sucesso." });
     } catch (error) {
       res.status(400).json({ error: error.message });
     }
   },
 
-  // Deletar uma postagem por "post_name"
+  // Deletar uma postagem por "uuid"
   deletarPostagem: async (req, res) => {
-    const { post_name } = req.params;
+    const { uuid } = req.params;
 
     try {
       const { data, error } = await supabase
         .from("postagem")
         .delete()
-        .eq("post_name", post_name);
+        .eq("uuid", uuid);
 
       if (error) throw error;
 

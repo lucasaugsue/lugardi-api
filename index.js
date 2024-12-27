@@ -29,10 +29,10 @@ app.use((req, res, next) => {
 
 // Rotas para as postagens
 app.get("/postagem", postagensController.listarPostagens);
-app.get("/postagem/:post_name", postagensController.buscarPostagemPorNome);
+app.get("/postagem/:uuid", postagensController.buscarPostagemPorUuid);
 app.post("/postagem", postagensController.criarPostagem);
-app.put("/postagem/:post_name", postagensController.editarPostagem);
-app.delete("/postagem/:post_name", postagensController.deletarPostagem);
+app.put("/postagem/:uuid", postagensController.editarPostagem);
+app.delete("/postagem/:uuid", postagensController.deletarPostagem);
 
 // Rotas para os personagens
 app.get("/personagem", personagensController.listarPersonagens);
